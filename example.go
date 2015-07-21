@@ -1,0 +1,37 @@
+package main
+
+import (
+	"time"
+
+	"github.com/hybridgroup/gobot"
+	"github.com/hybridgroup/gobot/api"
+	"github.com/hybridgroup/gobot/platforms/gpio"
+	"github.com/hybridgroup/gobot/platforms/intel-iot/edison"
+)
+
+func main() {
+	gbot := gobot.NewGobot()
+
+	e := edison.NewEdisonAdaptor("edison")
+	led := gpio.NewLedDriver(e, "led", "13")
+
+	work := func() {
+		gobot.Every(10*time.Second, func() {
+			led.Toggle()
+		})
+	}
+
+	robot := gobot.NewRobot("blinkBot",
+		[]gobot.Connection{e},
+		[]gobot.Device{led},
+		work,
+	)
+
+	gbot.AddRobot(robot)
+
+	a := api.NewAPI(gbot)
+	a.Debug()
+	a.Start()
+
+	gbot.Start()
+}

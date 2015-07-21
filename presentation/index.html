@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Gobot</h1>
+					<p>Controlling the Internet of Things with Go</p>
+					<small>Trevor Rosen </br> <a href="github.com/trevrosen">@trevrosen</a></small>
+				</section>
+
+				<section>
+					<h1>Internet of Things</h1>
+					<p>Yes, it's kind of a buzzword</p>
+				</section>
+
+				<section>
+					<p>That's because there are a lot of Things.</p>
+					<p>Gartner believes <a href="http://www.gartner.com/newsroom/id/2636073">26 billion by 2020</a></p>
+				</section>
+
+				<section>
+					<dl>
+						<dt><a href="https://en.wikipedia.org/wiki/Internet_of_Things">Internet of Things</a></dt>
+						<dd style="font-style:italic">(n.) the network of physical objects or "things" embedded with electronics, software, sensors, and connectivity to enable objects to exchange data with the manufacturer, operator and/or other connected devices based on the infrastructure of International Telecommunication Union's Global Standards Initiative.</dd>
+					</dl>
+						<aside class="notes">
+							Connected devices are growing huge. IPv6 will be adopted because of this. Tons of things have a TCP-IP stack and know how to talk to the internet. Even more will know how to talk only to each other.
+						</aside>
+				</section>
+
+				<section>
+					<h1>What are these "Things" You Speak Of?</h1>
+				</section>
+
+				<section>
+					<h3>Almost anything you can think of</h3>
+					<ul>
+						<li>Small pieces of hardware, limited in functional scope</li>
+						<li>Empowered with communications capabilities</li>
+						<li>New devices or "connected" versions of longstanding products</li>
+					</ul>
+
+					<aside class="notes">
+						(such as thermostats, conveyor belts, home deadbolt locks, refrigerators, etc
+					</aside>
+				</section>
+
+				<section>
+					<h3>Technologies</h3>
+					<ul>
+						<li><a href="https://en.wikipedia.org/wiki/Radio-frequency_identification">RFID</a></li>
+						<li>Wifi</li>
+						<li>Bluetooth(LE)</li>
+						<li>IPv6</li>
+					</ul>
+
+					<aside class="notes">
+						- Bluetooth LE means things running for years on watch batteries will have IPs
+						- IPv6 is interesting in that not all IoT devices are supporting it yet, but I believe that IoT needs will drive adoption of IPv6 over time.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Fun things</h2>
+					<ul>
+						<li>Sphero</li>
+						<li>Ardrone</li>
+						<li>3D Robotics stuff</li>
+					</ul>
+				</section>
+
+				<section>
+					<section>
+						<h2>Things for making other Things</h2>
+					</section>
+					<section>
+						<h3>Development Boards</h3>
+					</section>
+					<section>
+						<ul>
+							<li><a href="https://www.arduino.cc">Arduino</a></li>
+							<li><a href="https://www.raspberrypi.org">Raspberry Pi</a></li>
+							<li><a href="http://beagleboard.org/BLACK">BeagleBone</a></li>
+							<li><a href="https://www.particle.io">Particle (Spark)</a></li>
+							<li><a href="https://software.intel.com/en-us/iot/library/edison-getting-started">Intel Edison</a></li>
+						</ul>
+						<aside class="notes">
+							Some of these are powerful. Small, Linux-based. Arduino different because basically a microcontroller and boot loader. But lots are pretty powerful. Some have on-board wireless comms ((give examples of specs)).
+						</aside>
+					</section>
+
+					<section>
+						<h3>Why Go is Great for Development Boards</h3>
+					</section>
+
+					<section>
+						<ul>
+							<li>Static compilation</li>
+							<li>Cross compilation</li>
+							<li>Awesome standard library</li>
+							<li>Concurrency</li>
+						</ul>
+						<aside class="notes">
+							Can compile on your development machine and upload straight to board w/ no dependency management. This is especially nice on embedded hardware. Low resource usage, nice concurrency reasoning for doing things like reacting to lots of inputs, polling, etc.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<h1>Gobot</h1>
+				</section>
+
+				<section>
+					<p><a href="http://gobot.io">Gobot </a>is a Go library for fun robotics things:</p>
+					<ul>
+						<li>Program drones, toys, and development boards</li>
+						<li>Encapsulate functionality and easily loop, create events, etc</li>
+						<li>Control your creations with a web-based interface</li>
+						<li>Easily access pinouts and hardware interfaces on supported platforms</li>
+					</ul>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script>
+// Full list of configuration options available at:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+	controls: true,
+	progress: true,
+	history: true,
+	center: true,
+
+	transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+	// Optional reveal.js plugins
+	dependencies: [
+	{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+	{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+	{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+	{ src: 'plugin/zoom-js/zoom.js', async: true },
+	{ src: 'plugin/notes/notes.js', async: true }
+	]
+});
+
+		</script>
+
+	</body>
+</html>
