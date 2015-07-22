@@ -15,10 +15,19 @@ func main() {
 	e := edison.NewEdisonAdaptor("edison")
 
 	led := gpio.NewLedDriver(e, "led", "13")
+	buzzer := gpio.NewBuzzerDriver(e, "buzzer", "4")
 
+	// Blink the LED
 	blink_work := func() {
 		gobot.Every(10*time.Second, func() {
 			led.Toggle()
+		})
+	}
+
+	// Ring the buzzer
+	buzzer_work := func() {
+		gobot.Every(4*time.Second, func() {
+			buzzer.Tone(gpio.G5, gpio.Eighth)
 		})
 	}
 
@@ -28,7 +37,14 @@ func main() {
 		blink_work,
 	)
 
+	buzz_bot := gobot.NewRobot("buzzBot",
+		[]gobot.Connection{e},
+		[]gobot.Device{led},
+		buzzer_work,
+	)
+
 	gbot.AddRobot(blink_bot)
+	gbot.AddRobot(buzz_bot)
 
 	a := api.NewAPI(gbot)
 	a.Debug()
