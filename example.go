@@ -14,13 +14,15 @@ func main() {
 
 	e := edison.NewEdisonAdaptor("edison")
 
-	led := gpio.NewLedDriver(e, "led", "13")
+	board_led := gpio.NewLedDriver(e, "led", "13")
+	red_led := gpio.NewLedDriver(e, "led", "3")
+	green_led := gpio.NewLedDriver(e, "led", "2")
 	buzzer := gpio.NewBuzzerDriver(e, "buzzer", "4")
 
-	// Blink the LED
-	blink_work := func() {
+	// Blink the Board LED
+	board_blink_work := func() {
 		gobot.Every(10*time.Second, func() {
-			led.Toggle()
+			board_led.Toggle()
 		})
 	}
 
@@ -31,19 +33,31 @@ func main() {
 		})
 	}
 
-	blink_bot := gobot.NewRobot("blinkBot",
+	board_blink_bot := gobot.NewRobot("Board LED",
 		[]gobot.Connection{e},
-		[]gobot.Device{led},
-		blink_work,
+		[]gobot.Device{board_led},
+		board_blink_work,
 	)
 
 	buzz_bot := gobot.NewRobot("buzzBot",
 		[]gobot.Connection{e},
-		[]gobot.Device{led},
+		[]gobot.Device{buzzer},
 		buzzer_work,
 	)
 
-	gbot.AddRobot(blink_bot)
+	red_blink_bot := gobot.NewRobot("Red LED",
+		[]gobot.Connection{e},
+		[]gobot.Device{red_led},
+	)
+
+	green_blink_bot := gobot.NewRobot("Green LED",
+		[]gobot.Connection{e},
+		[]gobot.Device{green_led},
+	)
+
+	gbot.AddRobot(board_blink_bot)
+	gbot.AddRobot(green_blink_bot)
+	gbot.AddRobot(red_blink_bot)
 	gbot.AddRobot(buzz_bot)
 
 	a := api.NewAPI(gbot)
