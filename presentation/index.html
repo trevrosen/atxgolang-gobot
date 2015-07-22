@@ -156,6 +156,10 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 						<li>Control your creations with a web-based interface</li>
 						<li>Easily access pinouts and hardware interfaces on supported platforms</li>
 					</ul>
+
+					<aside class="notes">
+						Really cool for getting into Go if you follow the examples and have some hardware.
+					</aside>
 				</section>
 
 				<section>
@@ -195,7 +199,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 					<p>Encapsulate the abstraction of a Platform</p>
 					<ul>
 						<li>Implemented as a lightweight interface</li>
-						<li>Holds pinout abstraction</li>
+						<li>Holds pinout abstraction and things like I2C specifics</li>
 						<li>Abstracts away things like GPIO implementation differences</li>
 						<li>Handles platform specific-initialization tasks</li>
 					</ul>
