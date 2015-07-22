@@ -157,8 +157,69 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 						<li>Easily access pinouts and hardware interfaces on supported platforms</li>
 					</ul>
 				</section>
-			</div>
 
+				<section>
+					<p>Made by the <a href="http://hybridgroup.com">Hybrid Group</a>, a California consultancy that has released robot-control frameworks in several languages. They also help make SDKs and developer portals for new Things.</p>
+					<aside class="notes">
+						These guys are really cool. Robot frameworks in JS, Ruby. They have a bunch of projects for helping kids learn to code and play with robots (KidsRuby).
+					</aside>
+				</section>
+
+				<section>
+					<h2>Platforms</h2>
+					<p>The device/interfaces that you can program with Gobot</p>
+					<ul>
+						<li>Specific toys and dev boards</li>
+						<li>GPIO</li>
+						<li>I2C</li>
+						<li>Bluetooth LE (coming soon)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Drivers</h2>
+					<p>Encapsulate notions of Platform-independent functionality</p>
+					<ul>
+						<li>Implemented as a lightweight interface</li>
+						<li>Hold methods for doing functionality-specific things</li>
+						<li>Examples: buzzers, LEDs, LCDs</li>
+					</ul>
+
+					<aside class="notes">
+						Here's where a lot of your development board logic would be.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Adaptors</h2>
+					<p>Encapsulate the abstraction of a Platform</p>
+					<ul>
+						<li>Implemented as a lightweight interface</li>
+						<li>Holds pinout abstraction</li>
+						<li>Abstracts away things like GPIO implementation differences</li>
+						<li>Handles platform specific-initialization tasks</li>
+					</ul>
+
+					<aside class="notes">
+						OS-to-board numbering differences in GPIO are annoying. Different Linux kernel versions handle GPIO differently.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Web Interface</h2>
+					<p>Control your creations with a web interface</p>
+					<ul>
+						<li>Not well-documented, but powerful</li>
+						<li>Easy to expose functionality of Robots through it</li>
+						<li>UI is React-based and fully client-side</li>
+						<li>"api" package provides this</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Time to tempt the demo gods!</h1>
+				</section>
+			</div>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
